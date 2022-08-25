@@ -77,3 +77,6 @@ form {
   text-align: center;
   border-width: 0px;
 }
+#description:first-letter {
+  text-transform: capitalize;
+}

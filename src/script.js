@@ -32,6 +32,14 @@ function showTemperature(response) {
 
   let description = document.querySelector("#description");
   description.innerHTML = response.data.weather[0].description;
+
+  let weatherIcon = document.querySelector("#weather-icon");
+  let iconCode = response.data.weather[0].icon;
+  weatherIcon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${iconCode}@2x.png`
+  );
+  weatherIcon.setAttribute("alt", response.data.weather[0].description);
 }
 
 function getCity(event) {
