@@ -1,0 +1,79 @@
+ul {
+  display: inline;
+}
+li {
+  list-style: none;
+  margin: 0;
+}
+.fahrenheitSymbol {
+  text-decoration-line: none;
+  color: #000000;
+}
+.cityChoice {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.currentTemperature {
+  font-size: 40px;
+  text-align: left;
+  vertical-align: top;
+}
+.currentTemperatureEmoji {
+  vertical-align: bottom;
+}
+.degreeMeasurment {
+  vertical-align: middle;
+}
+.weatherApp {
+  max-width: 700px;
+  background: linear-gradient(
+    179.4deg,
+    rgb(253, 240, 233) 2.2%,
+    rgb(255, 194, 203) 96.2%
+  );
+  padding: 20px;
+  margin: 20px;
+}
+.currentTemperature {
+  font-size: 50px;
+  vertical-align: top;
+}
+.currentConditionList {
+  vertical-align: top;
+  font-size: 15px;
+  line-height: 1.2;
+}
+.currentCity {
+  text-align: right;
+  line-height: 1.2;
+}
+.tabs {
+  padding-top: 30px;
+}
+.temperature-tab {
+  border-right: 1.5px solid black;
+}
+.precipitation-tab {
+  border-right: 1.5px solid black;
+}
+.days {
+  text-align: center;
+  padding-top: 30px;
+}
+
+input.form-control.placeholder-background {
+  background-color: #fadbdc;
+}
+form {
+  margin-bottom: 10px;
+}
+#current-location-button {
+  background: rgba(0, 0, 0.2, 0);
+  font-size: 10px;
+  padding: 1px 5px;
+  margin-bottom: 20px;
+  display: block;
+  text-align: center;
+  border-width: 0px;
+}
