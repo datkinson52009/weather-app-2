@@ -9,6 +9,11 @@ li {
   text-decoration-line: none;
   color: #000000;
 }
+.celciusSymbol {
+  color: #000000;
+  text-decoration-line: none;
+}
+
 .cityChoice {
   font-size: 25px;
   font-weight: bold;

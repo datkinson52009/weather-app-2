@@ -37,7 +37,9 @@
 
         <div class="row">
           <div class="col-6"></div>
-          <div class="col-3 button"><button id="current-location-button">Use current location</button></div>
+          <div class="col-3 button">
+            <button id="current-location-button">Use current location</button>
+          </div>
         </div>
 
         <div class="row">
@@ -49,16 +51,14 @@
               alt=""
             />
             <span class="currentTemperature" id="current-temperature">34</span>
-            <a href="#"> <span class="degreeMeasurement" id="celcius-conversion"
-              >°C | </a>
+            <a href="#" class="celciusSymbol" id="celcius-conversion">°C | </a>
 
-              <a href="#" class="fahrenheitSymbol" id="fahrenheit-conversion"
-                >°F</a>     
-              
-            </span>
+            <a href="#" class="fahrenheitSymbol" id="fahrenheit-conversion"
+              >°F</a
+            >
           </div>
           <div class="col-3 currentConditionList">
-            <ul>            
+            <ul>
               <li id="humidity">Humidity: 49%</li>
               <li id="wind">Wind: 10 mph</li>
             </ul>
@@ -68,15 +68,6 @@
             <div class="day-time" id="day-time">Last updated</div>
             <div class="currentCondition" id="description"></div>
           </div>
-        </div>
-
-
-
-
-        <div class="row tabs">
-          <div class="col-2 temperature-tab">Temperature</div>
-          <div class="col-2 precipitation-tab">Precipitation</div>
-          <div class="col-2 wind-tab">Wind</div>
         </div>
 
         <div class="row days">
