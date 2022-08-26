@@ -19,6 +19,34 @@ daysOfTheWeek = [
 let currentDayTime = document.querySelector("#day-time");
 currentDayTime.innerHTML = `${daysOfTheWeek[day]} ${hour}:${minute}`;
 
+//forecast display
+function displayForecast(response) {
+  //console.log(response.data.daily);
+  for (let i = 0; i < 8; i++) {
+    let nextDate = new Date(response.data.daily[i].dt * 1000);
+    let maxTemp = response.data.daily[i].temp.max;
+    let minTemp = response.data.daily[i].temp.min;
+    console.log(nextDate);
+    console.log(maxTemp);
+    console.log(minTemp);
+
+    let next = document.querySelector("#next-day-1");
+    console.log(next.innerHTML);
+  }
+}
+
+//end forecast display
+
+//forecast
+function getForecast(longitude, latitude) {
+  let apiKey = "462d1f08d569f95ec1f23ff00bbaacc6";
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+//end forecast
+
 //conversion
 let celcius = null;
 
@@ -48,9 +76,10 @@ function showTemperature(response) {
   );
   weatherIcon.setAttribute("alt", response.data.weather[0].description);
 
-  console.log(response.data);
+  let longitude = response.data.coord.lon;
+  let latitude = response.data.coord.lat;
 
-  //let longitude =
+  getForecast(longitude, latitude);
 }
 
 function convertToFahrenheit(event) {
