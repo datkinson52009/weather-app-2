@@ -5,15 +5,18 @@ li {
   list-style: none;
   margin: 0;
 }
-.fahrenheitSymbol {
+.conversion {
   text-decoration-line: none;
   color: #000000;
+  position: relative;
+  top: 10px;
 }
-.celciusSymbol {
+.conversion:hover {
   color: #000000;
-  text-decoration-line: none;
 }
-
+div.col-4.section-one {
+  padding-right: 0;
+}
 .cityChoice {
   font-size: 25px;
   font-weight: bold;
@@ -25,11 +28,10 @@ li {
   vertical-align: top;
 }
 .currentTemperatureEmoji {
-  vertical-align: bottom;
+  vertical-align: top;
+  width: 80px;
 }
-.degreeMeasurment {
-  vertical-align: middle;
-}
+
 .weatherApp {
   max-width: 700px;
   background: linear-gradient(
@@ -53,15 +55,7 @@ li {
   text-align: right;
   line-height: 1.2;
 }
-.tabs {
-  padding-top: 30px;
-}
-.temperature-tab {
-  border-right: 1.5px solid black;
-}
-.precipitation-tab {
-  border-right: 1.5px solid black;
-}
+
 .days {
   text-align: center;
   padding-top: 30px;
