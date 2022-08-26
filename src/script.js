@@ -1,3 +1,5 @@
+let apiKey = "462d1f08d569f95ec1f23ff00bbaacc6";
+
 let now = new Date();
 
 let day = now.getDay();
@@ -17,9 +19,16 @@ daysOfTheWeek = [
 let currentDayTime = document.querySelector("#day-time");
 currentDayTime.innerHTML = `${daysOfTheWeek[day]} ${hour}:${minute}`;
 
+let celcius = null;
+
 function showTemperature(response) {
+  celcius = response.data.main.temp;
+
+  let city = document.querySelector("#city-choice");
+  city.innerHTML = response.data.name;
+
   let currentTemperature = document.querySelector("#current-temperature");
-  currentTemperature.innerHTML = Math.round(response.data.main.temp);
+  currentTemperature.innerHTML = Math.round(celcius);
 
   let currentPrecipitation = document.querySelector("#precipitation");
   currentPrecipitation.innerHTML = response.data.main.precipitation;
@@ -42,20 +51,30 @@ function showTemperature(response) {
   weatherIcon.setAttribute("alt", response.data.weather[0].description);
 }
 
-function getCity(event) {
+//default city
+function searchCity(city) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(showTemperature);
+}
+
+searchCity("Atlanta");
+
+//end default city
+
+function getCityFromSubmit(event) {
   event.preventDefault();
 
   let cityInput = document.querySelector("#city-input");
   let city = document.querySelector("#city-choice");
   city.innerHTML = cityInput.value;
 
-  let apiKey = "462d1f08d569f95ec1f23ff00bbaacc6";
+  //let apiKey = "462d1f08d569f95ec1f23ff00bbaacc6";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=metric&appid=${apiKey}`;
 
   axios.get(apiUrl).then(showTemperature);
 }
 let form = document.querySelector("#weather-form");
-form.addEventListener("submit", getCity);
+form.addEventListener("submit", getCityFromSubmit);
 
 //current location
 function showPosition(position) {
@@ -77,26 +96,27 @@ let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 //current location
 
+//conversion
 function convertToFahrenheit(event) {
   event.preventDefault();
-  let temperatureToConvert = document.querySelector("#current-temperature");
-  temperatureToConvert.innerHTML = "93";
-  // temperatureToConvert.innerHTML = Math.round(
-  // temperatureToConvert.innerHTML * (9 / 5) + 32
-  //);
+  let temperatureElement = document.querySelector("#current-temperature");
+  let fahrenheitTemperature = Math.round(celcius * (9 / 5) + 32);
+
+  temperatureElement.innerHTML = fahrenheitTemperature;
 }
 
 function convertToCelcius(event) {
   event.preventDefault();
   let temperatureToConvert = document.querySelector("#current-temperature");
-  temperatureToConvert.innerHTML = "34";
-  //temperatureToConvert.innerHTML = Math.round(
-  //(temperatureToConvert - 32) * (5 / 9)
-  //);
+
+  temperatureToConvert.innerHTML = Math.round(
+    (temperatureToConvert - 32) * (5 / 9)
+  );
 }
 
-let fahrenheit = document.querySelector("#fahrenheit-conversion");
-fahrenheit.addEventListener("click", convertToFahrenheit);
+let fahrenheitLink = document.querySelector("#fahrenheit-conversion");
+fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
-let celcius = document.querySelector("#celcius-conversion");
-celcius.addEventListener("click", convertToCelcius);
+let celciusLink = document.querySelector("#celcius-conversion");
+celciusLink.addEventListener("click", convertToCelcius);
+//end conversion
