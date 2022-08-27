@@ -21,22 +21,44 @@ currentDayTime.innerHTML = `${daysOfTheWeek[day]} ${hour}:${minute}`;
 
 //forecast display
 function displayForecast(response) {
-  //console.log(response.data.daily);
-  for (let i = 1; i < 8; i++) {
-    let nextDate = new Date(response.data.daily[i].dt * 1000);
-    let maxTemp = response.data.daily[i].temp.max;
-    let minTemp = response.data.daily[i].temp.min;
-    //console.log(nextDate);
-    //console.log(maxTemp);
-    //console.log(minTemp);
+  let forecastElement = document.querySelector("#forecast");
 
-    let next = document.querySelector("#next-day-1");
-    //console.log(next.innerHTML);
-    let nextDayOfWeek = daysOfTheWeek[nextDate.getDay()];
-    console.log(nextDayOfWeek);
-    //console.log(nextDate.getDay());
-  }
+  let forecastHTML = `<div class="row">`;
+  let days = ["mon", "tues", "wed", "thurs", "fri", "sat", "sun"];
+  days.forEach((day) => {
+    forecastHTML =
+      forecastHTML +
+      `
+<div class="col">
+  <div id="next-day">${day}</div>
+  <div>
+    <img
+      src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"
+      alt=""
+    />
+  </div>
+  <span class="high">34°</span> <span class="low">10°</span>
+</div>
+`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
+
+//console.log(response.data.daily);
+//for (let i = 1; i < 8; i++) {
+// let nextDate = new Date(response.data.daily[i].dt * 1000);
+//let maxTemp = response.data.daily[i].temp.max;
+//let minTemp = response.data.daily[i].temp.min;
+//console.log(nextDate);
+//console.log(maxTemp);
+//console.log(minTemp);
+//console.log(next.innerHTML);
+//let nextDayOfWeek = daysOfTheWeek[nextDate.getDay()];
+// console.log(nextDayOfWeek);
+//let day1 = document.querySelector("#next-day-1");
+//console.log(next.innerHTML);
+//}
 
 //end forecast display
 
