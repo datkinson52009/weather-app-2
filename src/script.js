@@ -24,13 +24,22 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["mon", "tues", "wed", "thurs", "fri", "sat", "sun"];
+
+  //let days = ["mon", "tues", "wed", "thurs", "fri", "sat", "sun"];
+  let days = [];
+
+  for (let i = 0; i < 7; i++) {
+    let nextDate = new Date(response.data.daily[i + 1].dt * 1000);
+    days[i] = nextDate.getDay();
+    console.log(daysOfTheWeek[days[i]]);
+  }
+
   days.forEach((day) => {
     forecastHTML =
       forecastHTML +
       `
 <div class="col">
-  <div id="next-day">${day}</div>
+  <div id="next-day">${daysOfTheWeek[day]}</div>
   <div>
     <img
       src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"
