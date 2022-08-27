@@ -25,13 +25,11 @@ function displayForecast(response) {
 
   let forecastHTML = `<div class="row">`;
 
-  //let days = ["mon", "tues", "wed", "thurs", "fri", "sat", "sun"];
   let days = [];
 
   for (let i = 0; i < 7; i++) {
     let nextDate = new Date(response.data.daily[i + 1].dt * 1000);
     days[i] = nextDate.getDay();
-    console.log(daysOfTheWeek[days[i]]);
   }
 
   days.forEach((day) => {
@@ -76,7 +74,7 @@ function getForecast(longitude, latitude) {
   let apiKey = "462d1f08d569f95ec1f23ff00bbaacc6";
 
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
-  console.log(apiUrl);
+
   axios.get(apiUrl).then(displayForecast);
 }
 //end forecast
