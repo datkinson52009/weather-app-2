@@ -22,16 +22,19 @@ currentDayTime.innerHTML = `${daysOfTheWeek[day]} ${hour}:${minute}`;
 //forecast display
 function displayForecast(response) {
   //console.log(response.data.daily);
-  for (let i = 0; i < 8; i++) {
+  for (let i = 1; i < 8; i++) {
     let nextDate = new Date(response.data.daily[i].dt * 1000);
     let maxTemp = response.data.daily[i].temp.max;
     let minTemp = response.data.daily[i].temp.min;
-    console.log(nextDate);
-    console.log(maxTemp);
-    console.log(minTemp);
+    //console.log(nextDate);
+    //console.log(maxTemp);
+    //console.log(minTemp);
 
     let next = document.querySelector("#next-day-1");
-    console.log(next.innerHTML);
+    //console.log(next.innerHTML);
+    let nextDayOfWeek = daysOfTheWeek[nextDate.getDay()];
+    console.log(nextDayOfWeek);
+    //console.log(nextDate.getDay());
   }
 }
 
