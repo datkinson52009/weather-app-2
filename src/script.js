@@ -19,18 +19,22 @@ daysOfTheWeek = [
 let currentDayTime = document.querySelector("#day-time");
 currentDayTime.innerHTML = `${daysOfTheWeek[day]} ${hour}:${minute}`;
 
+let days = [{}];
+let dailyHigh = [];
+
 //forecast display
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
 
-  let forecastHTML = `<div class="row">`;
-
-  let days = [];
-
   for (let i = 0; i < 7; i++) {
     let nextDate = new Date(response.data.daily[i + 1].dt * 1000);
     days[i] = nextDate.getDay();
+
+    let maxTemp = Math.round(response.data.daily[i + 1].temp.max);
+    dailyHigh[i] = maxTemp;
   }
+
+  let forecastHTML = `<div class="row">`;
 
   days.forEach((day) => {
     forecastHTML =
@@ -42,32 +46,17 @@ function displayForecast(response) {
     <img
       src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"
       alt=""
+      id="next-day-icon"
     />
   </div>
-  <span class="high">34°</span> <span class="low">10°</span>
+  <span class="high" id="highTemp">34°</span> <span class="low" id="lowTemp">10°</span>
 </div>
 `;
   });
+
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
-
-//console.log(response.data.daily);
-//for (let i = 1; i < 8; i++) {
-// let nextDate = new Date(response.data.daily[i].dt * 1000);
-//let maxTemp = response.data.daily[i].temp.max;
-//let minTemp = response.data.daily[i].temp.min;
-//console.log(nextDate);
-//console.log(maxTemp);
-//console.log(minTemp);
-//console.log(next.innerHTML);
-//let nextDayOfWeek = daysOfTheWeek[nextDate.getDay()];
-// console.log(nextDayOfWeek);
-//let day1 = document.querySelector("#next-day-1");
-//console.log(next.innerHTML);
-//}
-
-//end forecast display
 
 //forecast
 function getForecast(longitude, latitude) {
