@@ -19,43 +19,65 @@ daysOfTheWeek = [
 let currentDayTime = document.querySelector("#day-time");
 currentDayTime.innerHTML = `${daysOfTheWeek[day]} ${hour}:${minute}`;
 
-let days = [{}];
-let dailyHigh = [];
+let days = [];
 
 //forecast display
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+
+  console.log(response.data.daily);
 
   for (let i = 0; i < 7; i++) {
     let nextDate = new Date(response.data.daily[i + 1].dt * 1000);
     days[i] = nextDate.getDay();
 
-    let maxTemp = Math.round(response.data.daily[i + 1].temp.max);
-    dailyHigh[i] = maxTemp;
-  }
+    let maxTemp = Math.round(response.data.daily[i].temp.max);
+    let lowTemp = Math.round(response.data.daily[i].temp.min);
+    let icon = response.data.daily[i].weather[0].icon;
+    console.log(icon);
+    //let icon = `<img src="https://openweathermap.org/img/wn/02d@2x.png" />`;
 
-  let forecastHTML = `<div class="row">`;
-
-  days.forEach((day) => {
+    //src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" ICON PREVIOUS
     forecastHTML =
       forecastHTML +
       `
 <div class="col">
-  <div id="next-day">${daysOfTheWeek[day]}</div>
-  <div>
-    <img
-      src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"
-      alt=""
-      id="next-day-icon"
-    />
-  </div>
-  <span class="high" id="highTemp">34°</span> <span class="low" id="lowTemp">10°</span>
+<div id="next-day">${daysOfTheWeek[days[i]]}</div>
+<div>
+  <img
+    src="https://openweathermap.org/img/wn/${icon}@2x.png"
+    alt=""
+    id="next-day-icon"
+    width="50"
+    id="next-day-icon"
+  />
 </div>
+<div class="forecast-temp">
+<span class="high" id="high-temp">${maxTemp}°</span> <span class="low" id="low-temp">${lowTemp}°</span>
+</div></div>
 `;
-  });
+  }
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+
+  /* add corrected
+  function display() {
+    let personElement = document.querySelector("#person");
+
+    let personHTML = `<div class="row">`;
+
+    for (let i = 0; i < 2; i++) {
+      hair.push("bald");
+      personHTML =
+        personHTML +
+        `<div class="col-3"> Day: ${name[i]} <div>High Temp: ${color[i]} <span>Low Temp: ${hair[i]}</span></div></div>`;
+    }
+
+    personHTML = personHTML + `</div>`;
+    personElement.innerHTML = personHTML;
+  } */
 }
 
 //forecast

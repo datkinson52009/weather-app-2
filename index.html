@@ -17,7 +17,7 @@
   <body>
     <div class="container">
       <div class="weatherApp">
-        <h1>Weather</h1>
+        <h1>Current Weather</h1>
         <form id="weather-form">
           <div class="row">
             <div class="col-6 cityInput">
@@ -50,15 +50,17 @@
               src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
               alt=""
             />
-            <span class="currentTemperature" id="current-temperature">34</span>
-            <a href="#" class="conversion" id="celcius-conversion">°C | </a>
+            <span class="currentTemperature" id="current-temperature"></span>
+            <a href="#" class="conversion" id="celcius-conversion"
+              >°C <span>|</span></a
+            >
 
             <a href="#" class="conversion" id="fahrenheit-conversion">°F</a>
           </div>
           <div class="col-3 currentConditionList">
             <ul>
-              <li id="humidity">Humidity: 49%</li>
-              <li id="wind">Wind: 10 mph</li>
+              <li id="humidity"></li>
+              <li id="wind"></li>
             </ul>
           </div>
           <div class="col-5 currentCity">
@@ -76,11 +78,14 @@
                 <img
                   src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"
                   alt=""
+                  width="50"
                   id="next-day-icon"
                 />
               </div>
-              <span class="high" id="highTemp">34°</span>
-              <span class="low" id="lowTemp">10°</span>
+              <div class="forecast-temp">
+                <span class="high" id="high-temp">34°</span>
+                <span class="low" id="low-temp">10°</span>
+              </div>
             </div>
           </div>
         </div>

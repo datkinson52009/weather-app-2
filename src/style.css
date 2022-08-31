@@ -13,6 +13,7 @@ li {
 }
 .conversion:hover {
   color: #000000;
+  font-weight: bold;
 }
 div.col-4.section-one {
   padding-right: 0;
@@ -60,6 +61,9 @@ div.col-4.section-one {
   text-align: center;
   padding-top: 30px;
 }
+.forecast-temp {
+  text-align: center;
+}
 
 input.form-control.placeholder-background {
   background-color: #fadbdc;
@@ -78,4 +82,14 @@ form {
 }
 #description:first-letter {
   text-transform: capitalize;
+}
+#next-day-icon {
+  display: block;
+  margin: 0 auto;
+}
+#next-day {
+  text-align: center;
+}
+#high-temp {
+  font-weight: 600;
 }
